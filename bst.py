@@ -48,7 +48,26 @@ def search(data,root):
                 print("not found")
                 return 
     print("found")
-
+def printTree(current,kind="in"):
+    ##tree is empty
+    if any(current.values())==False:
+        return
+    ##leaf node
+    if any(current['left'].values())==False: 
+        if any(current['right'].values())==False:
+            print(current['val'])
+            return 
+    #intermediate node
+    if kind=="pre":
+        print(current['val'])
+    if any(current['left'].values()):
+        printTree(current['left'],kind)
+    if kind=="in":
+        print(current['val'])
+    if any(current['right'].values()):
+        printTree(current['right'],kind)
+    if kind=="post":
+        print(current['val'])
 def test():
   root={}
   root=insert(6,root)
@@ -59,3 +78,4 @@ def test():
   search(5,root)
   search(12,root)
   search(7,root)
+  printTree(root)
